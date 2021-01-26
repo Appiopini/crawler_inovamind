@@ -8,7 +8,7 @@ class QuotesController < ApplicationController
 
   def scrape
     url = 'http://quotes.toscrape.com/'
-    response = QuoteSpider.process(url)
+    response = QuotesSpider.process(url)
     if response[:status] == :completed && response[:error].nil?
       flash.now[:notice] = "Successfully scraped url"
     else
