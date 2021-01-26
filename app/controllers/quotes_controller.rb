@@ -1,5 +1,5 @@
 class QuotesController < ApplicationController
-  before_action :set_quote, only: %i[ show edit update destroy ]
+  before_action :set_quote, only: [:show, :edit, :update, :destroy]
 
   # GET /quotes or /quotes.json
   def index
@@ -8,7 +8,7 @@ class QuotesController < ApplicationController
 
   def scrape
     url = 'http://quotes.toscrape.com/'
-    response = QuotesSpider.process(url)
+    response = QuoteSpider.process(url)
     if response[:status] == :completed && response[:error].nil?
       flash.now[:notice] = "Successfully scraped url"
     else
