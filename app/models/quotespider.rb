@@ -1,4 +1,4 @@
-class Quote < ApplicationRecord
+class Quotespider < ApplicationRecord
   belongs_to :author
   has_many :tag
 
@@ -17,7 +17,7 @@ class Quote < ApplicationRecord
       item[:quote]        = quote.css('spam.text')&.text&.squish
       item[:author]       = quote.css('span.author')&.text&.squish
       item[:author_about] = quote.css('a.about')&.text&.squish
-      item[:tag]      = quote.css('div.tag')&.text&.squish
+      item[:tag]          = quote.css('div.tag')&.text&.squish
 
       Quote.where(item).first_or_create
     end
